@@ -133,14 +133,6 @@ public class ResourceManagement extends JFrame{
     }
     
     private void createWindowResources_S(){
-    
-        //capacityTXT, location, spaceType,restrictions;
-        //AVERIGUAR COMO ORDENAR;
-        
-        //resourceNameTXT = new TextField();
-        //resourceNameTXT.setBounds(220, 150, 100, 30);
-        //panel.add(resourceNameTXT);
-        //resourceNameTXT.setVisible(false);
         
         capacityTXT = new TextField();
         capacityTXT.setBounds(200, 200, 100, 30);
@@ -196,9 +188,7 @@ public class ResourceManagement extends JFrame{
     }
     
     private void createWindowGearResources(){
-    
-        //brand, model, serial, status;
-        
+            
         resourceNameTXT = new TextField();
         resourceNameTXT.setBounds(150, 150, 100, 30);
         panel.add(resourceNameTXT);

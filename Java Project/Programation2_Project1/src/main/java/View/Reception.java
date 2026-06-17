@@ -11,14 +11,7 @@ public class Reception extends JFrame{
     
     public JPanel panel;
     public JButton resourceManagement, reservationsManagements, checkAvailabilityAndCalendar, reportsButton, logOutButton;
-    private ReceptionModel receptionModel;
     public String name, password, userType;
-    
-    public Reception(ReceptionModel model){
-    
-        this.receptionModel = model;
-        initializeComponents();
-    }
     
     public Reception(){
    
@@ -30,7 +23,6 @@ public class Reception extends JFrame{
         createWindow();
         createPanel();
         addButtons();
-        setButtonsEnabled();
     }
     
     private void createWindow(){
@@ -71,23 +63,5 @@ public class Reception extends JFrame{
         logOutButton = new JButton("Log Out");
         logOutButton.setBounds(10, 10, 100, 30);
         panel.add(logOutButton);
-    }
-    
-    private void setButtonsEnabled(){
-        
-        name = receptionModel.getName();
-        password = receptionModel.getPassword();
-        userType = receptionModel.getUserType();
-    
-        if(name.equals("Michael") && password.equals("ñ") && userType.equals("Final User")){
-        
-            resourceManagement.setEnabled(false);
-            reportsButton.setEnabled(false);
-        }
-        if(name.equals("Melody") && password.equals("5678") && userType.equals("Person in Charge")){
-        
-            resourceManagement.setEnabled(false);
-            reservationsManagements.setEnabled(false);
-        }
     }
 }

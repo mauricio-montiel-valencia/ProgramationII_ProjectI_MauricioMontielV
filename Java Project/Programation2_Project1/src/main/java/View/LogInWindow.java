@@ -4,7 +4,6 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -13,14 +12,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class LogInWindow extends JFrame{
     
     public JPanel panel;
     public JLabel headline, nameLabel, passwordLabel, typeOfUser;
-    public TextField nameTXT;
+    public JTextField nameTXT;
     public JPasswordField passwordTXT;
-    public JButton logInButton;
+    public JButton logInButton, createUserButton;
     public String[] users = {"Administrator", "Person in Charge", "Final User"};
     public JComboBox comboBox;
     
@@ -44,7 +44,6 @@ public class LogInWindow extends JFrame{
         setSize(800, 600);
         setTitle("Log In");
         setLocationRelativeTo(null);
-        //setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
     }
@@ -81,7 +80,7 @@ public class LogInWindow extends JFrame{
     
     private void makeTextFields(){
     
-        nameTXT = new TextField();
+        nameTXT = new JTextField();
         nameTXT.setBounds(320, 190, 130, 30);
         panel.add(nameTXT);
         
@@ -101,7 +100,12 @@ public class LogInWindow extends JFrame{
      
         logInButton = new JButton("Log In");
         logInButton.setFont(new Font("Times New Roman", 3, 18));
-        logInButton.setBounds(330, 500, 100, 40);
+        logInButton.setBounds(250, 500, 100, 40);
         panel.add(logInButton);
+        
+        createUserButton = new JButton("Create User");
+        createUserButton.setFont(new Font("Times New Roman", 3 , 18));
+        createUserButton.setBounds(370, 500, 140, 40);
+        panel.add(createUserButton);
     }
 }

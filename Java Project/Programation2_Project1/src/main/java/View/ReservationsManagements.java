@@ -5,6 +5,7 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,8 +16,10 @@ import javax.swing.table.DefaultTableModel;
 public class ReservationsManagements extends JFrame{
     
     public JPanel panel;
-    public TextField resourceNameTXT, startDateTXT, startHourTXT, finalDateTXT, finalHourTXT, reasonTXT;
-    public JButton addReservation, cancelReservation, reservationDisponibility, returnButton;
+    public TextField startDateTXT, startHourTXT, finalDateTXT, finalHourTXT, reasonTXT;
+    public JButton addReservationButton, cancelReservationButton, reservationDisponibilityButton, returnButton, approvedButton, disapprovedButton;
+    public JComboBox resourceNameJC;
+    public JLabel resourceName, startDate, startHour, finalDate, finalHour, reason;
     
     public DefaultTableModel tableModel;
     public JTable table;
@@ -31,6 +34,7 @@ public class ReservationsManagements extends JFrame{
         makeWindow();
         makePanel();
         setLabels();
+        createComboBox();
         createTextFields();
         addButtons();
         makeTable();
@@ -54,36 +58,39 @@ public class ReservationsManagements extends JFrame{
     
     private void setLabels(){
     
-        JLabel resourceName = new JLabel("Resource:");
+        resourceName = new JLabel("Resource:");
         resourceName.setBounds(50, 100, 100, 30);
         panel.add(resourceName);
         
-        JLabel startDate = new JLabel("Start Date:");
+        startDate = new JLabel("Start Date:");
         startDate.setBounds(50, 150, 100, 30);
         panel.add(startDate);
         
-        JLabel startHour = new JLabel("Start Hour:");
+        startHour = new JLabel("Start Hour:");
         startHour.setBounds(50, 200, 100, 30);
         panel.add(startHour);
         
-        JLabel finalDate = new JLabel("Final Date:");
+        finalDate = new JLabel("Final Date:");
         finalDate.setBounds(50, 250, 100, 30);
         panel.add(finalDate);
         
-        JLabel finalHour = new JLabel("Final Hour:");
+        finalHour = new JLabel("Final Hour:");
         finalHour.setBounds(50, 300, 100, 30);
         panel.add(finalHour);
         
-        JLabel reason = new JLabel("Reason:");
+        reason = new JLabel("Reason:");
         reason.setBounds(50, 350, 100, 30);
         panel.add(reason);
     }
+        
+    private void createComboBox(){
+    
+        resourceNameJC = new JComboBox();
+        resourceNameJC.setBounds(150, 100, 100, 30);
+        panel.add(resourceNameJC);
+    }
     
     private void createTextFields(){
-    
-        resourceNameTXT = new TextField();
-        resourceNameTXT.setBounds(150, 100, 100, 30);
-        panel.add(resourceNameTXT);
         
         startDateTXT = new TextField();
         startDateTXT.setBounds(150, 150, 100, 30);
@@ -108,17 +115,25 @@ public class ReservationsManagements extends JFrame{
     
     private void addButtons(){
     
-        addReservation = new JButton("Add Reservation");
-        addReservation.setBounds(150, 400, 150, 30);
-        panel.add(addReservation);
+        addReservationButton = new JButton("Add Reservation");
+        addReservationButton.setBounds(150, 400, 150, 30);
+        panel.add(addReservationButton);
         
-        reservationDisponibility = new JButton("Reservation Disponibility");
-        reservationDisponibility.setBounds(125, 450, 200, 30);
-        panel.add(reservationDisponibility);
+        reservationDisponibilityButton = new JButton("Reservation Disponibility");
+        reservationDisponibilityButton.setBounds(125, 450, 200, 30);
+        panel.add(reservationDisponibilityButton);
         
-        cancelReservation = new JButton("Cancel Reservation");
-        cancelReservation.setBounds(150, 500, 150, 30);
-        panel.add(cancelReservation);
+        cancelReservationButton = new JButton("Cancel Reservation");
+        cancelReservationButton.setBounds(150, 500, 150, 30);
+        panel.add(cancelReservationButton);
+        
+        approvedButton = new JButton("Aproved Reservation");
+        approvedButton.setBounds(100, 200, 170, 40);
+        panel.add(approvedButton);
+        
+        disapprovedButton = new JButton("Disaproved Reservation");
+        disapprovedButton.setBounds(100, 300, 180, 40);
+        panel.add(disapprovedButton);
         
         returnButton = new JButton("Return");
         returnButton.setBounds(10, 10, 100, 30);

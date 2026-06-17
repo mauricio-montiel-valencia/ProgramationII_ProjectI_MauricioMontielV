@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 public class Reports extends JFrame{
@@ -15,7 +16,8 @@ public class Reports extends JFrame{
     public JPanel panel;
     public DefaultTableModel tableModel;
     public JTable table;
-    public JButton userHistoryButton, returnButton;
+    public JButton userHistoryButton, returnButton, returnToUsersButton;
+    public JScrollPane scrollPane;
  
     public Reports(){
         
@@ -26,7 +28,7 @@ public class Reports extends JFrame{
     
         createWindow();
         createPanel();
-        createTable();
+        createUserTable();
         createButtons();
     }
     
@@ -46,10 +48,45 @@ public class Reports extends JFrame{
         this.add(panel);
     }
     
-    private void createTable(){
-    
+    public void createUserTable(){
+        
+        if(scrollPane != null){panel.remove(scrollPane);}
+        
         tableModel = new DefaultTableModel();
         table = new JTable(tableModel);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        tableModel.addColumn("Usernames");
+        
+        scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(100, 100, 900, 400);
+        panel.add(scrollPane);
+        
+        revalidate();
+        repaint();
+    }
+    
+    public void addRowToTable(Object[] row){if(tableModel != null){tableModel.addRow(row);}}
+    
+    public String getSelectedUser(){
+    
+        int selectedRow = table.getSelectedRow();
+        
+        if(selectedRow != -1 && tableModel != null){return tableModel.getValueAt(selectedRow, 0).toString();}
+        
+        return null;
+    }
+    
+    public void setupHistoryTable(){
+        
+        if(scrollPane != null){panel.remove(scrollPane);}
+    
+        if(tableModel != null){tableModel.setRowCount(0); tableModel.setColumnCount(0);}
+        else{
+            tableModel = new DefaultTableModel();
+            table = new JTable(tableModel);
+            table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        }
         
         tableModel.addColumn("Username");
         tableModel.addColumn("Resource Name");
@@ -58,10 +95,13 @@ public class Reports extends JFrame{
         tableModel.addColumn("Final Hour / Date");
         tableModel.addColumn("Total Hours");
         tableModel.addColumn("Solicitude Date");
-        
-        JScrollPane scrollPane = new JScrollPane(table);
+    
+        scrollPane = new JScrollPane(table);
         scrollPane.setBounds(100, 100, 900, 400);
         panel.add(scrollPane);
+        
+        revalidate();
+        repaint();
     }
     
     private void createButtons(){
@@ -73,5 +113,9 @@ public class Reports extends JFrame{
         returnButton = new JButton("Return");
         returnButton.setBounds(10, 10, 100, 30);
         panel.add(returnButton);
+        
+        returnToUsersButton = new JButton("Users");   
+        returnToUsersButton.setBounds(10, 50, 100, 30);
+        panel.add(returnToUsersButton);
     }
 }

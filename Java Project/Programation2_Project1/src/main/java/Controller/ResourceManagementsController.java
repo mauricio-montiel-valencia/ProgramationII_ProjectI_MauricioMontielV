@@ -2,9 +2,6 @@ package Controller;
 
 import Model.DataBaseConnection;
 import Model.ReceptionModel;
-import Model.SaveContent;
-import Model.SaveGearContent;
-import Model.SaveSpaceContent;
 import View.ResourceManagement;
 import View.Reception;
 import java.awt.event.ActionEvent;
@@ -20,9 +17,7 @@ import javax.swing.JOptionPane;
 public class ResourceManagementsController {
     
     private String currentUsername, currentPassword, currentUserType;
-    
-    public ArrayList<SaveContent> saveAllResources = new ArrayList<>();
-    
+        
     ResourceManagement rsManagement;
     PreparedStatement ps;
     ResultSet rs;
@@ -85,7 +80,7 @@ public class ResourceManagementsController {
                 model.setPassword(currentPassword);
                 model.setUserType(currentUserType);
                 
-                Reception reception = new Reception(model);
+                Reception reception = new Reception();
                 ReceptionController Recepcontroller = new ReceptionController(model, reception); 
             }
         };
@@ -119,12 +114,7 @@ public class ResourceManagementsController {
                     
                         JOptionPane.showMessageDialog(null, "Please fill the gaps before register a resource");
                     }else{
-                    
-                    SaveSpaceContent spaceContent = new SaveSpaceContent(getResourceName, date, capacity, location, type, restrictions);
-                    
-                    
-                    saveAllResources.add(spaceContent);
-                    
+                             
                     String[] components = {getResourceName, getResourceType, type, date};
                     rsManagement.addRows(components);
                     
@@ -160,15 +150,7 @@ public class ResourceManagementsController {
                         
                         JOptionPane.showMessageDialog(null, "Please fill the gaps before register a resource");
                     }
-                    else{
-                    SaveGearContent gearContent = new SaveGearContent(
-                    
-                            getResourceName, date, getBrand, getModel,
-                            getSerial, getStatus
-                    );
-                    
-                    saveAllResources.add(gearContent);
-                    
+                    else{                    
                     String[] components = {getResourceName, getResourceType, getBrand, date};
                     rsManagement.addRows(components);
                     
